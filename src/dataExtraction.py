@@ -7,7 +7,7 @@ base_url = "http://football-data.co.uk/mmz4281/1314/"
 def make_url(ticker_symbol):
     return base_url + ticker_symbol
 
-output_path = "/afs/nada.kth.se/home/3/u1qvl923/predictPremierLeague"
+output_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
 def make_filename(ticker_symbol, directory="historicalData"):
     return output_path + "/" + directory + "/" + ticker_symbol #+ ".csv"
 
