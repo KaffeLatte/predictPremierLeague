@@ -1,9 +1,10 @@
 import os
 import sys
 
-from os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'src')) import pull_historical_data
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'src')))
+import dataExtraction
 
-pull_historical_data("E0.csv")
-readDataFromExcel("E0")
-list = readStockDataFromFile("E0")
+dataExtraction.pull_historical_data("E0.csv")
+dataExtraction.readDataFromExcel("E0")
+list = dataExtraction.readStockDataFromFile("E0")
 print list[1]
