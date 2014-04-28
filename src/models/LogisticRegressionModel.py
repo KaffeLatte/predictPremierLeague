@@ -43,7 +43,6 @@ class Team(object):
 	def __init__(self, name):
 		self.attributeList = [0] * 12
 		self.name = name
-		self.matches = []
 
 	def getRecentGames(self):
 		#Implement
@@ -91,25 +90,25 @@ def createTeams():
 
 	for row in list:
 		if teamMap.has_key(row[2]) != true:
-			t = Team()
+			t = Team(row[2])
 			teamMap[row[2]] = t
 		if teamMap.has_key(row[3]) != true:
-			t = Team()
+			t = Team(row[3])
 			teamMap[row[3]] = t
 
 		#aggregate values to home team
 		teamMap[row[2]].aggGoalDiff(row[4]-row[5])
 		teamMap[row[2]].aggWonGames()
 		teamMap[row[2]].aggWonLostDiff()
-		teamMap[row[2]].aggShots()
-		teamMap[row[2]].aggShotsOnGoal()
-		teamMap[row[2]].aggShotsWoodwork()
-		teamMap[row[2]].aggCorners()
-		teamMap[row[2]].aggFouls()
-		teamMap[row[2]].aggOffsides()
-		teamMap[row[2]].aggYellowCards()
-		teamMap[row[2]].aggRedCards()
-		teamMap[row[2]].setOdds()
+		teamMap[row[2]].aggShots(row[11])
+		teamMap[row[2]].aggShotsOnGoal(row[13])
+		teamMap[row[2]].aggShotsWoodwork(0)#N/A
+		teamMap[row[2]].aggCorners(row[17])
+		teamMap[row[2]].aggFouls(row[15])
+		teamMap[row[2]].aggOffsides(0)#N/A
+		teamMap[row[2]].aggYellowCards(row[19])
+		teamMap[row[2]].aggRedCards(row[21])
+		teamMap[row[2]].setOdds()#function for average odds
 
 		#aggregate values to away team
 		teamMap[row[3]].aggGoalDiff(-1*(row[4]-row[5]))
@@ -131,8 +130,6 @@ teamMap = dict()
 
 lrm = LogisticRegressionModel()
 
-t = Team()
-t.getRecentGames()
 
 print list[1]
 #print list[2]
