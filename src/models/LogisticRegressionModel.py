@@ -98,8 +98,16 @@ def createTeams():
 
 		#aggregate values to home team
 		teamMap[row[2]].aggGoalDiff(row[4]-row[5])
-		teamMap[row[2]].aggWonGames()
-		teamMap[row[2]].aggWonLostDiff()
+		won = 0
+		if (row[6] == 'H')
+			won = 1
+
+		lost = 0
+		if (row[6] == 'A')
+			lost = 1
+
+		teamMap[row[2]].aggWonGames(won)
+		teamMap[row[2]].aggWonLostDiff(lost)
 		teamMap[row[2]].aggShots(row[11])
 		teamMap[row[2]].aggShotsOnGoal(row[13])
 		teamMap[row[2]].aggShotsWoodwork(0)#N/A
@@ -112,17 +120,17 @@ def createTeams():
 
 		#aggregate values to away team
 		teamMap[row[3]].aggGoalDiff(-1*(row[4]-row[5]))
-		teamMap[row[3]].aggWonGames()
-		teamMap[row[3]].aggWonLostDiff()
-		teamMap[row[3]].aggShots()
-		teamMap[row[3]].aggShotsOnGoal()
-		teamMap[row[3]].aggShotsWoodwork()
-		teamMap[row[3]].aggCorners()
-		teamMap[row[3]].aggFouls()
-		teamMap[row[3]].aggOffsides()
-		teamMap[row[3]].aggYellowCards()
-		teamMap[row[3]].aggRedCards()
-		teamMap[row[3]].setOdds()
+		teamMap[row[3]].aggWonGames(lost)
+		teamMap[row[3]].aggWonLostDiff(won)
+		teamMap[row[3]].aggShots(row[12])
+		teamMap[row[3]].aggShotsOnGoal(row[14])
+		teamMap[row[3]].aggShotsWoodwork(0)#N/A
+		teamMap[row[3]].aggCorners(row[18])
+		teamMap[row[3]].aggFouls(row[16])
+		teamMap[row[3]].aggOffsides(0)#N/A
+		teamMap[row[3]].aggYellowCards(row[20])
+		teamMap[row[3]].aggRedCards(row[22])
+		teamMap[row[3]].setOdds()#function for average odds
 
 
 
